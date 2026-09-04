@@ -11,4 +11,8 @@ jobs:
     with:
       app-slug: citybound
       system-deps-linux: libasound2-dev libudev-dev pkg-config libx11-dev libxcb1-dev libxi-dev libxinerama-dev libxrandr-dev libxcursor-dev libfontconfig-dev libwayland-dev libxkbcommon-dev
+      # Legacy cb_* crates use kay 0.5 / chunky 0.3 and don't build on
+      # current nightly (1.93). Limit CI to the new Repose app via
+      # default-members; disable workspace tests until legacy is ported.
+      run-test: false
 

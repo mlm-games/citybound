@@ -1,0 +1,44 @@
+[package]
+name = "citybound-app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+publish = false
+description = "Citybound Repose desktop/web runner"
+default-run = "citybound-desktop"
+
+[lib]
+crate-type = ["rlib", "cdylib"]
+
+[[bin]]
+name = "citybound-desktop"
+path = "src/main.rs"
+
+[package.metadata.android]
+package = "org.citybound.app"
+apk_name = "citybound"
+build_targets = ["aarch64-linux-android"]
+split_per_abi = true
+
+[package.metadata.android.application]
+label = "Citybound"
+fullscreen = false
+icon = "@mipmap/ic_launcher"
+
+[dependencies]
+repose-platform.workspace = true
+repose-core.workspace = true
+citybound-ui.workspace = true
+anyhow.workspace = true
+env_logger.workspace = true
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen.workspace = true
+
+[target.'cfg(target_os = "android")'.dependencies]
+android_logger.workspace = true
+log.workspace = true
+winit.workspace = true
+rlobkit-app-events.workspace = true

@@ -1,19 +1,59 @@
-[package]
-name = "citybound"
-version = "0.3.0"
-authors = ["Anselm Eickhoff <anselm.eickhoff@gmail.com>"]
-license = "AGPL-3.0"
-
 [workspace]
+resolver = "3"
 members = [
     "./cb_simulation",
     "./cb_planning",
     "./cb_util",
     "./cb_time",
+    "./apps/citybound",
+    "./crates/citybound-ui",
 ]
 exclude = [
     "./cb_browser_ui"
 ]
+default-members = [
+    "./apps/citybound",
+    "./crates/citybound-ui",
+]
+
+[workspace.package]
+version = "0.3.0"
+edition = "2024"
+license = "AGPL-3.0"
+repository = "https://github.com/citybound/citybound"
+rust-version = "1.93"
+
+[workspace.dependencies]
+# Repose (like renamite 0.28)
+repose-core = "0.28"
+repose-ui = "0.28"
+repose-material = "0.28"
+repose-canvas = "0.28"
+repose-docking = "0.28"
+repose-platform = "0.28"
+repose-render-wgpu = { version = "0.28", default-features = false }
+repose-text = "0.28"
+repose-app = "0.28"
+repose-tree = "0.28"
+
+anyhow = "1"
+log = "0.4"
+env_logger = "0.11"
+wasm-bindgen = "0.2"
+winit = "0.30"
+android_logger = "0.15"
+rlobkit-app-events = { version = "0.5", features = ["jni-bridge"] }
+
+citybound-ui = { path = "crates/citybound-ui", version = "0.3.0" }
+
+[package]
+name = "citybound"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+authors = ["Anselm Eickhoff <anselm.eickhoff@gmail.com>"]
 
 [[bin]]
 name = "citybound"
