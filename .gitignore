@@ -1,6 +1,5 @@
-.vscode/.browse.VC.db
-target
+target/
+dist/
 cb_last_error.txt
 .version
 city
-node_modules
